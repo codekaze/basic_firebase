@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fire_example/core.dart';
+import 'package:fire_example/service/auth_service.dart';
 import 'package:fire_example/shared/widget/show_loading/show_loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -35,22 +36,9 @@ class LoginController extends GetxController {
         password: password,
       );
       hideLoading();
+      await AuthService.checkCurrentUserRole();
 
-      var snapshot = await FirebaseFirestore.instance
-          .collection("users")
-          .where(
-            "id",
-            isEqualTo: FirebaseAuth.instance.currentUser!.uid,
-          )
-          .get();
-
-      if (snapshot.docs.isEmpty) {
-        showError("Login failed", "This user is not registered to our system!");
-        return;
-      }
-
-      var user = snapshot.docs[0].data();
-      if (user["is_admin"]) {
+      if (AuthService.isAdmin) {
         Get.off(AdminMainNavigationView());
       } else {
         Get.off(ClientMainNavigationView());
