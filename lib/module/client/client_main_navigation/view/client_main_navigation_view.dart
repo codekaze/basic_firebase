@@ -1,4 +1,5 @@
 import 'package:fire_example/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import '../controller/client_main_navigation_controller.dart';
@@ -16,13 +17,33 @@ class ClientMainNavigationView extends StatelessWidget {
         return DefaultTabController(
           length: 4,
           child: Scaffold(
-            body: IndexedStack(
-              index: controller.selectedIndex,
+            body: Column(
               children: [
-                Container(),
-                Container(),
-                Container(),
-                ClientProfileView(),
+                if (kDebugMode)
+                  Container(
+                    padding: EdgeInsets.all(4.0),
+                    color: Colors.black,
+                    child: Center(
+                      child: Text(
+                        "Client",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                Expanded(
+                  child: IndexedStack(
+                    index: controller.selectedIndex,
+                    children: [
+                      Container(),
+                      Container(),
+                      Container(),
+                      ClientProfileView(),
+                    ],
+                  ),
+                ),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
