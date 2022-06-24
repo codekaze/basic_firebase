@@ -17,34 +17,36 @@ class ClientMainNavigationView extends StatelessWidget {
         return DefaultTabController(
           length: 4,
           child: Scaffold(
-            body: Column(
-              children: [
-                if (kDebugMode)
-                  Container(
-                    padding: EdgeInsets.all(4.0),
-                    color: Colors.black,
-                    child: Center(
-                      child: Text(
-                        "Client",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10.0,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  if (kDebugMode)
+                    Container(
+                      padding: EdgeInsets.all(4.0),
+                      color: Colors.black,
+                      child: Center(
+                        child: Text(
+                          "Client",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10.0,
+                          ),
                         ),
                       ),
                     ),
+                  Expanded(
+                    child: IndexedStack(
+                      index: controller.selectedIndex,
+                      children: [
+                        Container(),
+                        Container(),
+                        Container(),
+                        ClientProfileView(),
+                      ],
+                    ),
                   ),
-                Expanded(
-                  child: IndexedStack(
-                    index: controller.selectedIndex,
-                    children: [
-                      Container(),
-                      Container(),
-                      Container(),
-                      ClientProfileView(),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
             bottomNavigationBar: BottomNavigationBar(
               unselectedItemColor: Colors.blueGrey[500],

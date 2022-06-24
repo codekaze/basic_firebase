@@ -26,9 +26,7 @@ class DeveloperDashboardView extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () async {
-                          showLoading();
                           await controller.reset();
-                          hideLoading();
                         },
                         child: Container(
                           width: Get.width / 4,

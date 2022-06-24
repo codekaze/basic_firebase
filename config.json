@@ -1,6 +1,7 @@
 {
     "modules": [
         "auth/login",
+        "auth/sign_up",
         "client/client_main_navigation",
         "client/client_dashboard",
         "client/client_profile",

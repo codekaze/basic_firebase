@@ -1,17 +1,16 @@
 import 'package:fire_example/core.dart';
-import 'package:fire_example/module/auth/sign_up/view/sign_up_view.dart';
 import 'package:fire_example/module/developer/developer_main_navigation/view/developer_main_navigation_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../controller/login_controller.dart';
+import '../controller/sign_up_controller.dart';
+
 import 'package:get/get.dart';
 
-class LoginView extends StatelessWidget {
+class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LoginController>(
-      init: LoginController(),
+    return GetBuilder<SignUpController>(
+      init: SignUpController(),
       builder: (controller) {
         controller.view = this;
 
@@ -65,36 +64,20 @@ class LoginView extends StatelessWidget {
                                     textFieldType: TextFieldType.password,
                                   ),
                                   ExButton(
-                                    label: "Login",
-                                    onPressed: () => controller.login(),
-                                  ),
-                                  InkWell(
-                                    onTap: () async {
-                                      await FirebaseAuth.instance
-                                          .signInAnonymously();
-                                      Get.off(ClientMainNavigationView());
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "Login as Guest",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ),
+                                    label: "Sign Up",
+                                    onPressed: () => controller.signUp(),
                                   ),
                                   SizedBox(
                                     height: 10.0,
                                   ),
                                   InkWell(
                                     onTap: () async {
-                                      Get.off(SignUpView());
+                                      Get.off(LoginView());
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        "Signup",
+                                        "Login",
                                         style: TextStyle(
                                           fontSize: 12,
                                         ),
