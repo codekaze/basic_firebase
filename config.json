@@ -1,0 +1,17 @@
+{
+    "modules": [
+        "auth/login",
+        "client/client_main_navigation",
+        "client/client_dashboard",
+        "client/client_profile",
+        "vendor/vendor_main_navigation",
+        "vendor/vendor_dashboard",
+        "vendor/vendor_profile",
+        "admin/admin_main_navigation",
+        "admin/admin_dashboard",
+        "admin/admin_profile",
+        "developer/developer_main_navigation",
+        "developer/developer_dashboard",
+        "developer/developer_profile"
+    ]
+}
